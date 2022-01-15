@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from .models import Imovel
 # Create your views here.
 
 @login_required(login_url="login")
 def home(request):
-    return HttpResponse("Página home")
+  imoveis = Imovel.objects.all()
+    return render('home.html',{'imoveis':imoveis})
